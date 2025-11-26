@@ -4,32 +4,47 @@ import {
   messageAddedSubscription,
   messagesQuery,
 } from "./queries.js";
+import {
+  AddMessageResult,
+  AddMessageVars,
+  MessageAddedResult,
+  MessagesQueryResult,
+} from "../../models/shared.js";
 
 export function useAddMessage() {
-  const [mutate] = useMutation(addMessageMutation);
+  const [mutate] = useMutation<AddMessageResult, AddMessageVars>(
+    addMessageMutation
+  );
 
   const addMessage = async (text: string) => {
-    const {
-      data: { message },
-    } = await mutate({
-      variables: { text },
-    });
-    return message;
+    const { data } = await mutate({ variables: { text } });
+
+    if (!data) return null;
+
+    return data.addMessage;
   };
 
   return { addMessage };
 }
 
 export function useMessages() {
-  const { data } = useQuery(messagesQuery);
-  useSubscription(messageAddedSubscription, {
+  const { data } = useQuery<MessagesQueryResult>(messagesQuery);
+
+  useSubscription<MessageAddedResult>(messageAddedSubscription, {
     onData: ({ client, data }) => {
-      const newMessage = data.data.message;
-      client.cache.updateQuery({ query: messagesQuery }, ({ messages }) => {
-        return { messages: [...messages, newMessage] };
-      });
+      if (!data?.data) return;
+      const newMessage = data.data.messageAdded;
+
+      client.cache.updateQuery<MessagesQueryResult>(
+        { query: messagesQuery },
+        (prev) => {
+          if (!prev) return { messages: [newMessage] };
+          return { messages: [...prev.messages, newMessage] };
+        }
+      );
     },
   });
+
   return {
     messages: data?.messages ?? [],
   };

@@ -1,6 +1,12 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
+import { Message } from "../models/shared.js";
 
-function MessageList({ user, messages }) {
+interface MessageListProps {
+  user: string;
+  messages: Message[];
+}
+
+function MessageList({ user, messages }: MessageListProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -12,7 +18,11 @@ function MessageList({ user, messages }) {
   }, [messages]);
 
   return (
-    <div ref={containerRef} className="box" style={{ height: '50vh', overflowY: 'scroll' }}>
+    <div
+      ref={containerRef}
+      className="box"
+      style={{ height: "50vh", overflowY: "scroll" }}
+    >
       <table>
         <tbody>
           {messages.map((message) => (
@@ -24,17 +34,20 @@ function MessageList({ user, messages }) {
   );
 }
 
-function MessageRow({ user, message }) {
+interface MessageRowProps {
+  user: string;
+  message: Message;
+}
+
+function MessageRow({ user, message }: MessageRowProps) {
   return (
     <tr>
       <td className="py-1">
-        <span className={(message.user === user) ? 'tag is-primary' : 'tag'}>
+        <span className={message.user === user ? "tag is-primary" : "tag"}>
           {message.user}
         </span>
       </td>
-      <td className="pl-4 py-1">
-        {message.text}
-      </td>
+      <td className="pl-4 py-1">{message.text}</td>
     </tr>
   );
 }

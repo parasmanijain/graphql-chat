@@ -1,8 +1,15 @@
-function MessageInput({ onSend }) {
-  const handleKeyDown = (event) => {
+import { KeyboardEvent } from "react";
+
+interface MessageInputProps {
+  onSend: (a: string) => Promise<void>;
+}
+
+
+function MessageInput({ onSend }: MessageInputProps) {
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      onSend(event.target.value);
-      event.target.value = '';
+      onSend(event.currentTarget.value);
+      event.currentTarget.value = '';
     }
   };
 

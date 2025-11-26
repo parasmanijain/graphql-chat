@@ -22,7 +22,7 @@ function App() {
         </header>
       )}
       <main>
-        {Boolean(user) ? <Chat user={user} /> : <LoginForm onLogin={setUser} />}
+        {user ? <Chat user={user} /> : <LoginForm onLogin={setUser} />}
       </main>
     </ApolloProvider>
   );

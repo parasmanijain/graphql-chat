@@ -1,12 +1,16 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { login } from '../lib/auth.js';
 
-function LoginForm({ onLogin }) {
+interface LoginFormProps {
+  onLogin: (a: string) => void;
+}
+
+function LoginForm({ onLogin }: LoginFormProps) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(false);
     const user = await login(username, password);

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 function MessageList({ user, messages }) {
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const container = containerRef.current;

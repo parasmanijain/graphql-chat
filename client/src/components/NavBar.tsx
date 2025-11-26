@@ -1,4 +1,9 @@
-function NavBar({ user, onLogout }) {
+interface NavBarProps {
+  user: string;
+  onLogout: () => void;
+};
+
+function NavBar({ user, onLogout }: NavBarProps) {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
@@ -7,7 +12,7 @@ function NavBar({ user, onLogout }) {
         </p>
       </div>
       <div className="navbar-end">
-        {Boolean(user) && (
+        {user && (
           <div className="navbar-item">
             <button className="button is-link" onClick={onLogout}>
               Logout

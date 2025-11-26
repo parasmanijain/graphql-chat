@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { login } from '../lib/auth';
+import { login } from '../lib/auth.js';
 
 function LoginForm({ onLogin }) {
   const [username, setUsername] = useState('');

@@ -1,13 +1,23 @@
 import { connection } from "./connection.js";
 import { generateId } from "./ids.js";
 
-const getMessageTable = () => connection.table("message");
+export interface Message {
+  id: string;
+  user: string;
+  text: string;
+  createdAt: string;
+}
 
-export async function getMessages() {
+const getMessageTable = () => connection.table<Message>("message");
+
+export async function getMessages(): Promise<Message[]> {
   return await getMessageTable().select().orderBy("createdAt", "asc");
 }
 
-export async function createMessage(user: string, text: string) {
+export async function createMessage(
+  user: string,
+  text: string
+): Promise<Message> {
   const message = {
     id: generateId(),
     user,

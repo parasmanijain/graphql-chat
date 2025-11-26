@@ -1,4 +1,5 @@
 import { ApolloServer } from "@apollo/server";
+import path from "path";
 import { expressMiddleware as apolloMiddleware } from "@as-integrations/express5";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import cors from "cors";
@@ -42,7 +43,7 @@ function getWsContext({ connectionParams }: { connectionParams: any }) {
   return {};
 }
 
-const typeDefs = await readFile("./schema.graphql", "utf8");
+const typeDefs = await readFile(path.resolve("src/schema.graphql"), "utf8");
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 
 const apolloServer = new ApolloServer({ schema });

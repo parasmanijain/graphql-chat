@@ -1,13 +1,13 @@
-import { connection } from './connection.js';
-import { generateId } from './ids.js';
+import { connection } from "./connection.js";
+import { generateId } from "./ids.js";
 
-const getMessageTable = () => connection.table('message');
+const getMessageTable = () => connection.table("message");
 
 export async function getMessages() {
-  return await getMessageTable().select().orderBy('createdAt', 'asc');
+  return await getMessageTable().select().orderBy("createdAt", "asc");
 }
 
-export async function createMessage(user, text) {
+export async function createMessage(user: string, text: string) {
   const message = {
     id: generateId(),
     user,

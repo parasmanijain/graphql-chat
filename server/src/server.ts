@@ -1,5 +1,5 @@
 import { ApolloServer } from "@apollo/server";
-import { expressMiddleware as apolloMiddleware } from "@apollo/server/express4";
+import { expressMiddleware as apolloMiddleware } from "@as-integrations/express5";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import cors from "cors";
 import express from "express";

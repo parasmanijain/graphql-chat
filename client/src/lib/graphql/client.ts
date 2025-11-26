@@ -41,7 +41,7 @@ export const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-function isSubscription(operation) {
+function isSubscription(operation: ApolloLink.Operation) {
   const definition = getMainDefinition(operation.query);
   return (
     definition.kind === Kind.OPERATION_DEFINITION &&

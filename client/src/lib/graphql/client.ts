@@ -1,11 +1,5 @@
-import {
-  ApolloClient,
-  ApolloLink,
-  concat,
-  createHttpLink,
-  InMemoryCache,
-  split,
-} from "@apollo/client";
+import { ApolloClient, ApolloLink, InMemoryCache } from "@apollo/client";
+import { HttpLink } from "@apollo/client/link/http";
 import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { getMainDefinition } from "@apollo/client/utilities";
 import { Kind, OperationTypeNode } from "graphql";
@@ -22,12 +16,12 @@ const authLink = new ApolloLink((operation, forward) => {
   return forward(operation);
 });
 
-const httpLink = concat(
+const httpLink = ApolloLink.from([
   authLink,
-  createHttpLink({
+  new HttpLink({
     uri: "http://localhost:9000/graphql",
-  })
-);
+  }),
+]);
 
 const wsLink = new GraphQLWsLink(
   createWsClient({
@@ -37,7 +31,7 @@ const wsLink = new GraphQLWsLink(
 );
 
 export const apolloClient = new ApolloClient({
-  link: split(isSubscription, wsLink, httpLink),
+  link: ApolloLink.split(isSubscription, wsLink, httpLink),
   cache: new InMemoryCache(),
 });
 

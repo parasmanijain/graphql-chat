@@ -26,7 +26,6 @@ export const resolvers = {
       { text }: CreateMessageArgs,
       { user }: GraphQLContext
     ) => {
-      console.log("inside mutation", text);
       if (!user) throw unauthorizedError();
       const message = await createMessage(user, text);
       pubSub.publish("MESSAGE_ADDED", { messageAdded: message });

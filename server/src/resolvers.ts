@@ -9,9 +9,7 @@ export interface GraphQLContext {
 }
 
 interface CreateMessageArgs {
-  input: {
-    text: string;
-  };
+  text: string;
 }
 
 export const resolvers = {
@@ -25,9 +23,10 @@ export const resolvers = {
   Mutation: {
     addMessage: async (
       _root: unknown,
-      { input: { text } }: CreateMessageArgs,
+      { text }: CreateMessageArgs,
       { user }: GraphQLContext
     ) => {
+      console.log("inside mutation", text);
       if (!user) throw unauthorizedError();
       const message = await createMessage(user, text);
       pubSub.publish("MESSAGE_ADDED", { messageAdded: message });

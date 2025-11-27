@@ -18,12 +18,9 @@ export function useAddMessage() {
 
   const addMessage = async (text: string) => {
     const { data } = await mutate({ variables: { text } });
-
     if (!data) return null;
-
     return data.addMessage;
   };
-
   return { addMessage };
 }
 

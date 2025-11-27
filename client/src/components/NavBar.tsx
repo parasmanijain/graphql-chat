@@ -1,5 +1,5 @@
 interface NavBarProps {
-  user: string;
+  user?: string | null;
   onLogout: () => void;
 };
 

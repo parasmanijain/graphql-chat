@@ -16,11 +16,10 @@ function App() {
 
   return (
     <ApolloProvider client={apolloClient}>
-      {user && (
-        <header>
-          <NavBar user={user} onLogout={handleLogout} />
-        </header>
-      )}
+      <header>
+        <NavBar user={user} onLogout={handleLogout} />
+      </header>
+
       <main>
         {user ? <Chat user={user} /> : <LoginForm onLogin={setUser} />}
       </main>

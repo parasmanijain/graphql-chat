@@ -1,12 +1,12 @@
-import { ApolloProvider } from "@apollo/client/react";
 import { useState } from "react";
+import { ApolloProvider } from "@apollo/client/react";
 import { getUser, logout } from "./lib/auth.js";
-import Chat from "./components/Chat.js";
-import LoginForm from "./components/LoginForm.js";
-import NavBar from "./components/NavBar.js";
+import { Chat } from "./components/Chat.js";
+import { LoginForm } from "./components/LoginForm.js";
+import { NavBar } from "./components/NavBar.js";
 import { apolloClient } from "./lib/graphql/client.js";
 
-function App() {
+export const App = () => {
   const [user, setUser] = useState(getUser);
 
   const handleLogout = () => {
@@ -26,5 +26,3 @@ function App() {
     </ApolloProvider>
   );
 }
-
-export default App;

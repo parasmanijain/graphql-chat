@@ -5,7 +5,7 @@ interface MessageInputProps {
 }
 
 
-function MessageInput({ onSend }: MessageInputProps) {
+export const MessageInput = ({ onSend }: MessageInputProps) => {
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       onSend(event.currentTarget.value);
@@ -23,5 +23,3 @@ function MessageInput({ onSend }: MessageInputProps) {
     </div>
   );
 }
-
-export default MessageInput;

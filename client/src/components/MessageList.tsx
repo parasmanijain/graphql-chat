@@ -1,12 +1,13 @@
 import { useEffect, useRef } from "react";
 import { Message } from "../models/shared.js";
+import { MessageRow } from "./MessageRow.js";
 
 interface MessageListProps {
   user: string;
   messages: Message[];
 }
 
-function MessageList({ user, messages }: MessageListProps) {
+export const MessageList = ({ user, messages }: MessageListProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -33,23 +34,3 @@ function MessageList({ user, messages }: MessageListProps) {
     </div>
   );
 }
-
-interface MessageRowProps {
-  user: string;
-  message: Message;
-}
-
-function MessageRow({ user, message }: MessageRowProps) {
-  return (
-    <tr>
-      <td className="py-1">
-        <span className={message.user === user ? "tag is-primary" : "tag"}>
-          {message.user}
-        </span>
-      </td>
-      <td className="pl-4 py-1">{message.text}</td>
-    </tr>
-  );
-}
-
-export default MessageList;

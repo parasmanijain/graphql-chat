@@ -5,7 +5,7 @@ interface LoginFormProps {
   onLogin: (a: string) => void;
 }
 
-function LoginForm({ onLogin }: LoginFormProps) {
+export const LoginForm = ({ onLogin }: LoginFormProps) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
@@ -67,5 +67,3 @@ function LoginForm({ onLogin }: LoginFormProps) {
     </section>
   );
 }
-
-export default LoginForm;

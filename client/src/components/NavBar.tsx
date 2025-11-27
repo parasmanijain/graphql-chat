@@ -3,7 +3,7 @@ interface NavBarProps {
   onLogout: () => void;
 };
 
-function NavBar({ user, onLogout }: NavBarProps) {
+export const NavBar = ({ user, onLogout }: NavBarProps) => {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
@@ -23,5 +23,3 @@ function NavBar({ user, onLogout }: NavBarProps) {
     </nav>
   );
 }
-
-export default NavBar;

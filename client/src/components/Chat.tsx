@@ -1,8 +1,8 @@
 import { useAddMessage, useMessages } from '../lib/graphql/hooks.js';
-import MessageInput from './MessageInput.js';
-import MessageList from './MessageList.js';
+import { MessageInput } from './MessageInput.js';
+import { MessageList } from './MessageList.js';
 
-function Chat({ user }: { user: string }) {
+export const Chat = ({ user }: { user: string }) => {
   const { messages } = useMessages();
   const { addMessage } = useAddMessage();
 

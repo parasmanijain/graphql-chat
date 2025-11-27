@@ -7,6 +7,7 @@ import {
 import {
   AddMessageResult,
   AddMessageVars,
+  MessageAddedResult,
   MessagesQueryResult,
 } from "../../models/shared.js";
 
@@ -26,13 +27,15 @@ export function useAddMessage() {
 export function useMessages() {
   const { data } = useQuery<MessagesQueryResult>(messagesQuery);
 
-  useSubscription<any>(messageAddedSubscription, {
+  useSubscription<MessageAddedResult>(messageAddedSubscription, {
     onData: ({ client, data }) => {
+      if (!data?.data) return;
       const newMessage = data.data.message;
-      client.cache.updateQuery<any>(
+      client.cache.updateQuery<MessagesQueryResult>(
         { query: messagesQuery },
-        ({ messages }) => {
-          return { messages: [...messages, newMessage] };
+        (prev) => {
+          if (!prev) return { messages: [newMessage] };
+          return { messages: [...prev.messages, newMessage] };
         }
       );
     },

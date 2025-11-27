@@ -21,5 +21,5 @@ export type AddMessageVars = {
 };
 
 export type MessageAddedResult = {
-  messageAdded: Message;
+  message: Message;
 };

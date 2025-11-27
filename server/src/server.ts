@@ -34,7 +34,11 @@ async function getHttpContext({
   return context;
 }
 
-function getWsContext({ connectionParams }: { connectionParams: any }) {
+function getWsContext({
+  connectionParams,
+}: {
+  connectionParams: Record<string, any> | undefined;
+}) {
   const accessToken = connectionParams?.accessToken;
   if (accessToken) {
     const payload = decodeToken(accessToken);

@@ -9,16 +9,16 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@apollo/server": "^5.2.0",
+    "@apollo/server": "^5.4.0",
     "@as-integrations/express5": "^1.1.2",
     "@graphql-tools/schema": "^10.0.31",
     "better-sqlite3": "^12.6.2",
-    "cors": "^2.8.5",
+    "cors": "^2.8.6",
     "express": "^5.2.1",
     "express-jwt": "^8.5.1",
-    "graphql": "^16.12.0",
+    "graphql": "^16.13.1",
     "graphql-subscriptions": "^3.0.0",
-    "graphql-ws": "^6.0.6",
+    "graphql-ws": "^6.0.7",
     "jsonwebtoken": "^9.0.3",
     "knex": "^3.1.0",
     "nanoid": "^5.1.6",
@@ -29,13 +29,14 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
-    "@types/node": "^25.0.9",
+    "@types/node": "^25.3.5",
     "@types/ws": "^8.18.1",
-    "nodemon": "^3.1.11",
+    "nodemon": "^3.1.14",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   },
   "nodemonConfig": {
     "ext": "graphql,js"
-  }
+  },
+  "packageManager": "pnpm@10.30.3"
 }
